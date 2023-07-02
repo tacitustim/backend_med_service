@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" th:href="@{../static/css/main.css}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Настройте размер и позиционирование фона */
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<script>
+    // Создание элемента iframe и добавление его на страницу
+    function createVideoBackground() {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/OwPZIhTHDUk?autoplay=1&controls=0&loop=1&showinfo=0&mute=1&playlist=OwPZIhTHDUk';
+        iframe.frameBorder = '0';
+        iframe.allowFullscreen = true;
+        iframe.id = 'video-background';
+
+        document.body.appendChild(iframe);
+    }
+
+    // Вызов функции после загрузки страницы
+    window.onload = createVideoBackground;
+</script>
+    <div class="container">
+        <div class="navbarStyle">
+        
+                <a th:href="@{'/'}" class="textStyle">Цитадель Лечения</a>
+                <div class="pages">
+                    <a th:href="@{'../static/default_pages/abous.html'}" class="pagesText" >О нас</a>
+                    <a th:href="@{'../static/default_pages/contact.html'}" class="pagesText" >Контакты</a>
+                    <a th:href="@{'../static/default_pages/price.html'}" class="pagesText" >Прайс</a>
+
+                    <a th:href="@{'/auth/login'}" class="pagesText" >Войти</a>
+                </div>
+           
+        </div>
+
+        
+
+    </div>
+    <div id="container1">
+           
+            <div class="mainPage">
+                <h2 class="mainTitle">Лучшая медицинская клиника в городе Алматы</h2>
+            <p class="mainText">— Мы предоставляем высококачественные услуги и лечим многочисленные заболевания</p>
+
+            <p class="mainText">— Наша клиника находится в центре города, и у нас работают только квалифицированные специалисты.</p>
+
+            <p class="mainText">— Мы гордимся предоставлением профессионального медицинского обслуживания, чтобы обеспечить ваше здоровье и благополучие.</p>
+           
+            </div>
+         
+
+        </form>
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body>
+<div class="container">
+  <div class="navbarStyle">
+
+    <a th:href="@{'/'}" class="textStyle">Цитадель Лечения</a>
+    <div class="pages">
+      <a th:href="@{'../static/default_pages/abous.html'}" class="pagesText" >О нас</a>
+      <a th:href="@{'../static/default_pages/contact.html'}" class="pagesText" >Контакты</a>
+      <a th:href="@{'../static/default_pages/price.html'}" class="pagesText" >Прайс</a>
+      <a th:href="@{'/auth/register'}" class="pagesText" >Регистрация</a>
+    </div>
+
+  </div>
+
+
+</div>
+<h2>Registration</h2>
+<form th:object="${patient}" th:action="@{/auth/register}" method="post">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+  </div>
+  <div>
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" th:field="*{surname}" required/>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+  </div>
+  <div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" th:field="*{age}" required/>
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+  </div>
+  <div>
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" th:field="*{weight}" required/>
+    <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
+  </div>
+  <div>
+    <label for="height">Height:</label>
+    <input type="number" id="height" th:field="*{height}" required/>
+    <span th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></span>
+  </div>
+  <div>
+    <label for="doctor">Doctor:</label>
+    <select id="doctor" th:field="*{doctor.id}" required>
+      <th:block th:each="doc : ${doctors}">
+        <option th:value="${doc.getId()}" th:text="${doc.getName() + ' ' + doc.getSurname()}"/>
+      </th:block>
+    </select>
+    <span th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></span>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <label class="label">Пароль(по умолчанию - "admin")</label><br>
+    <input type="text" name="patient_pass" class="form-control">
+  </div>
+  <button type="submit">Register</button>
+</form>
+</body>
+</html>
